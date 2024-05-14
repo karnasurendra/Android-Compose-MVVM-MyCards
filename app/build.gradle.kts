@@ -70,6 +70,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Compose dependencies
+    implementation(libs.viewModelCompose)
+    implementation(libs.androidx.navigation)
+    implementation(libs.composeMaterial)
+
+    // Coroutines
+    implementation(libs.coroutinesCore)
+    implementation(libs.coroutinesAndroid)
+
     /*Hilt*/
     implementation(libs.hilt)
     kapt(libs.hiltKapt)

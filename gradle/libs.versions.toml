@@ -12,6 +12,11 @@ hiltVersion = "2.48"
 hiltNavigationComposeVersion = "1.2.0"
 roomVersion = "2.6.1"
 kspVersion = "1.5.30-1.0.0"
+coroutinesCore = "1.5.30-1.0.0"
+coroutinesAndroid = "1.5.30-1.0.0"
+viewModelCompose = "2.4.0-beta01"
+navigationCompose = "2.4.0-alpha09"
+composeMaterialIcons = "2.4.0-beta01"
 
 
 [libraries]
@@ -29,11 +34,16 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-room = { group = "androidx.room", name="room-runtime", version.ref = "roomVersion"}
-androidx-room-compiler = { group = "androidx.room", name="room-compiler", version.ref = "roomVersion"}
-hilt = { group = "com.google.dagger", name="hilt-android", version.ref = "hiltVersion"}
-hiltKapt = { group = "com.google.dagger", name="hilt-android-compiler", version.ref = "hiltVersion"}
-hiltComposeNavigation = { group = "androidx.hilt", name="hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion"}
+androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVersion" }
+hiltKapt = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltVersion" }
+hiltComposeNavigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
+coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutinesCore" }
+coroutinesAndroid = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesAndroid" }
+viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewModelCompose" }
+androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "activityCompose" }
+composeMaterial = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "navigationCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
