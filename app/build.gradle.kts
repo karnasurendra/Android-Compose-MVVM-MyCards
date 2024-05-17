@@ -73,7 +73,8 @@ dependencies {
     // Compose dependencies
     implementation(libs.viewModelCompose)
     implementation(libs.androidx.navigation)
-    implementation(libs.composeMaterial)
+    implementation("com.squareup:javapoet:1.13.0")
+//    implementation(libs.composeMaterial)
 
     // Coroutines
     implementation(libs.coroutinesCore)

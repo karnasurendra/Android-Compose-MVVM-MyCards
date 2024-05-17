@@ -12,11 +12,12 @@ hiltVersion = "2.48"
 hiltNavigationComposeVersion = "1.2.0"
 roomVersion = "2.6.1"
 kspVersion = "1.5.30-1.0.0"
-coroutinesCore = "1.5.30-1.0.0"
-coroutinesAndroid = "1.5.30-1.0.0"
-viewModelCompose = "2.4.0-beta01"
-navigationCompose = "2.4.0-alpha09"
-composeMaterialIcons = "2.4.0-beta01"
+coroutinesCore = "1.7.3"
+coroutinesAndroid = "1.7.3"
+viewModelCompose = "2.8.0"
+navigationCompose = "2.7.7"
+composeMaterialIcons = "1.6.7"
+
 
 
 [libraries]
@@ -42,8 +43,8 @@ hiltComposeNavigation = { group = "androidx.hilt", name = "hilt-navigation-compo
 coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutinesCore" }
 coroutinesAndroid = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesAndroid" }
 viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewModelCompose" }
-androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "activityCompose" }
-composeMaterial = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "navigationCompose" }
+androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+#composeMaterial = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "composeMaterialIcons" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
