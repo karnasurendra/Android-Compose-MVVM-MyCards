@@ -1,7 +1,7 @@
 package com.karna.mycards.data.repository
 
 import com.karna.mycards.data.data_source.CardDao
-import com.karna.mycards.data.model.Card
+import com.karna.mycards.domain.model.Card
 import kotlinx.coroutines.flow.Flow
 
 class CardRepositoryImpl(private val dao: CardDao) : CardRepository {

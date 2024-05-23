@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyCards</string>
+    <string name="my_cards">My Cards</string>
+    <string name="no_cards">No Cards Available.</string>
+    <string name="add_card">Add Card</string>
+    <string name="card_no">Card Number</string>
 </resources>

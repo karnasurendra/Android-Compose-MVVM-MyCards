@@ -19,7 +19,9 @@ import com.karna.mycards.presentation.add_edit_card.AddEditCardScreen
 import com.karna.mycards.presentation.cards.CardsScreen
 import com.karna.mycards.presentation.util.Screen
 import com.karna.mycards.ui.theme.MyCardsTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

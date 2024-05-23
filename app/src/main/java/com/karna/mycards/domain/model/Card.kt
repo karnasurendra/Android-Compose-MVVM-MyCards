@@ -1,4 +1,4 @@
-package com.karna.mycards.data.model
+package com.karna.mycards.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -26,5 +26,7 @@ enum class CardType {
 enum class CardPaymentNetwork {
     Visa, Master, RuPay, Amex, Diners, Discover
 }
+
+class InvalidCardException(message: String): Exception(message)
 
 

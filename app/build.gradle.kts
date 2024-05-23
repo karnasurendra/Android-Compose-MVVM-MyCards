@@ -50,6 +50,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    hilt {
+        enableAggregatingTask = false
+    }
 }
 
 dependencies {
@@ -71,9 +74,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Compose dependencies
-    implementation(libs.viewModelCompose)
-    implementation(libs.androidx.navigation)
-    implementation("com.squareup:javapoet:1.13.0")
+//    implementation(libs.viewModelCompose)
+//    implementation(libs.androidx.navigation)
 //    implementation(libs.composeMaterial)
 
     // Coroutines

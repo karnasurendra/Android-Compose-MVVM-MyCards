@@ -16,8 +16,6 @@ coroutinesCore = "1.7.3"
 coroutinesAndroid = "1.7.3"
 viewModelCompose = "2.8.0"
 navigationCompose = "2.7.7"
-composeMaterialIcons = "1.6.7"
-
 
 
 [libraries]
@@ -42,9 +40,8 @@ hiltKapt = { group = "com.google.dagger", name = "hilt-android-compiler", versio
 hiltComposeNavigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
 coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutinesCore" }
 coroutinesAndroid = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutinesAndroid" }
-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewModelCompose" }
-androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
-#composeMaterial = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "composeMaterialIcons" }
+#viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewModelCompose" }
+#androidx-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
