@@ -1,9 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    kotlin("kapt")
     alias(libs.plugins.hilt)
-    alias(libs.plugins.roomKsp)
+    kotlin("kapt")
 }
 
 android {
@@ -73,11 +72,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Compose dependencies
-//    implementation(libs.viewModelCompose)
-//    implementation(libs.androidx.navigation)
-//    implementation(libs.composeMaterial)
-
     // Coroutines
     implementation(libs.coroutinesCore)
     implementation(libs.coroutinesAndroid)
@@ -88,8 +82,9 @@ dependencies {
     implementation(libs.hiltComposeNavigation)
 
     /*Room*/
-    implementation(libs.androidx.room)
-    annotationProcessor(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    androidTestImplementation("androidx.room:room-testing:$roomVersion")
 
 }

@@ -6,7 +6,8 @@ import com.karna.mycards.domain.model.Card
 
 @Database(
     entities = [Card::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class CardDatabase : RoomDatabase() {
 

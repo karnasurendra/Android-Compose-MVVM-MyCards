@@ -5,13 +5,13 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Card(
-    val cardType: CardType,
-    val nameOnCard: String,
     val cardNo: String,
     val expiryDate: String,
-    val cvv: Int,
-    val cardBank: CardBank,
-    val cardPaymentNetworkType: CardPaymentNetwork,
+    val cvv: String,
+    val nameOnCard: String,
+    val cardBank: String,
+    val cardPaymentNetworkType: String,
+    val cardType: String,
     @PrimaryKey val id: Int? = null
 )
 
@@ -25,6 +25,10 @@ enum class CardType {
 
 enum class CardPaymentNetwork {
     Visa, Master, RuPay, Amex, Diners, Discover
+}
+
+enum class CardBenefits {
+    Fuel, Shopping, Travel, Food
 }
 
 class InvalidCardException(message: String): Exception(message)

@@ -10,13 +10,15 @@ sealed class AddEditCardEvent {
     data class ChangeCardNoFocus(val focusState: FocusState) : AddEditCardEvent()
     data class EnteredNameOnCard(val nameOnCard: String) : AddEditCardEvent()
     data class ChangeCardNameFocus(val focusState: FocusState) : AddEditCardEvent()
-    data class EnteredCardCvv(val cvv: Int) : AddEditCardEvent()
+    data class EnteredCardExpiryDate(val expiryDate: String) : AddEditCardEvent()
+    data class ChangeExpiryDateFocus(val focusState: FocusState) : AddEditCardEvent()
+    data class EnteredCardCvv(val cvv: String) : AddEditCardEvent()
     data class ChangeCardCvvFocus(val focusState: FocusState) : AddEditCardEvent()
-    data class SelectedCardExpiryDate(val date: Int, val month: Int) : AddEditCardEvent()
-    data class SelectedCardType(val cardType: CardType) : AddEditCardEvent()
-    data class SelectedCardPaymentNetwork(val cardPaymentNetwork: CardPaymentNetwork) :
+    data class SelectedCardBank(val cardBank: String) : AddEditCardEvent()
+    data class SelectedCardPaymentNetwork(val cardPaymentNetwork: String) :
         AddEditCardEvent()
-    data class SelectedCardBank(val cardBank: CardBank) : AddEditCardEvent()
+    data class SelectedCardType(val cardType: String) : AddEditCardEvent()
+
     object SaveCard : AddEditCardEvent()
 
 }

@@ -21,49 +21,51 @@ import javax.inject.Inject
 @HiltViewModel
 class AddEditCardViewModel @Inject constructor(
     private val cardUseCases: CardUseCases,
-    savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _cardNumber = mutableStateOf(
         CardTextFieldState(
-            hint = "Enter Card Number..."
+            hint = "Card Number..."
         )
     )
     val cardNumber: State<CardTextFieldState> = _cardNumber
 
     private val _nameOnCard = mutableStateOf(
         CardTextFieldState(
-            hint = "Enter Name On Card..."
+            hint = "Name On Card..."
         )
     )
     val nameOnCard: State<CardTextFieldState> = _nameOnCard
 
-    private val _cardCvv = mutableStateOf(CardTextFieldState(hint = "Enter CVV"))
+    private val _cardCvv = mutableStateOf(CardTextFieldState(hint = "Cvv..."))
     val cardCvv: State<CardTextFieldState> = _cardCvv
 
-    private val _cardExpiryDate = mutableStateOf(Pair(0, 0))
-    val cardExpiryDate: State<Pair<Int, Int>> = _cardExpiryDate
+    private val _cardExpiryDate = mutableStateOf(CardTextFieldState(hint = "Date..."))
+    val cardExpiryDate: State<CardTextFieldState> = _cardExpiryDate
 
     private val _cardBank = mutableStateOf(
-        CardBank.SBI
+        CardTextFieldState(hint = "Select Card Bank...")
     )
-    val cardBank: State<CardBank> = _cardBank
+    val cardBank: State<CardTextFieldState> = _cardBank
 
     private val _cardPaymentNetwork = mutableStateOf(
-        CardPaymentNetwork.RuPay
+        CardTextFieldState(hint = "Select Payment Network...")
     )
-    val cardPaymentNetwork: State<CardPaymentNetwork> = _cardPaymentNetwork
-
+    val cardPaymentNetwork: State<CardTextFieldState> = _cardPaymentNetwork
 
     private val _cardType = mutableStateOf(
-        CardType.Credit
+        CardTextFieldState(hint = "Select Card Type...")
     )
-    val cardType: State<CardType> = _cardType
+    val cardType: State<CardTextFieldState> = _cardType
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private var currentCardId: Int? = null
+
+    var cardBanksList: List<String>
+    var cardTypeList: List<String>
+    var cardPaymentNetworkList: List<String>
 
     init {
         savedStateHandle.get<Int>("cardId")?.let { cardId ->
@@ -73,6 +75,22 @@ class AddEditCardViewModel @Inject constructor(
             }
 
         }
+
+        cardBanksList = prepareCardBanksList()
+        cardTypeList = prepareCardTypeList()
+        cardPaymentNetworkList = prepareCardPaymentNetworkList()
+    }
+
+    private fun prepareCardBanksList(): List<String> {
+        return CardBank.entries.map { it.name }
+    }
+
+    private fun prepareCardTypeList(): List<String> {
+        return CardType.entries.map { it.name }
+    }
+
+    private fun prepareCardPaymentNetworkList(): List<String> {
+        return CardPaymentNetwork.entries.map { it.name }
     }
 
     fun onEvent(event: AddEditCardEvent) {
@@ -101,9 +119,21 @@ class AddEditCardViewModel @Inject constructor(
                 )
             }
 
+            is AddEditCardEvent.EnteredCardExpiryDate -> {
+                _cardExpiryDate.value = cardExpiryDate.value.copy(
+                    text = event.expiryDate
+                )
+            }
+
+            is AddEditCardEvent.ChangeExpiryDateFocus -> {
+                _cardCvv.value = cardCvv.value.copy(
+                    isHintVisible = !event.focusState.isFocused && cardNumber.value.text.isBlank()
+                )
+            }
+
             is AddEditCardEvent.EnteredCardCvv -> {
                 _cardCvv.value = cardCvv.value.copy(
-                    text = event.cvv.toString()
+                    text = event.cvv
                 )
             }
 
@@ -113,34 +143,48 @@ class AddEditCardViewModel @Inject constructor(
                 )
             }
 
-            is AddEditCardEvent.SelectedCardExpiryDate -> {
-                _cardExpiryDate.value = Pair(event.date, event.month)
-            }
 
             is AddEditCardEvent.SelectedCardBank -> {
-                _cardBank.value = event.cardBank
+                _cardBank.value = cardBank.value.copy(
+                    text = event.cardBank
+                )
             }
 
             is AddEditCardEvent.SelectedCardPaymentNetwork -> {
-                _cardPaymentNetwork.value = event.cardPaymentNetwork
+                _cardPaymentNetwork.value = cardPaymentNetwork.value.copy(
+                    text = event.cardPaymentNetwork
+                )
             }
 
             is AddEditCardEvent.SelectedCardType -> {
-                _cardType.value = event.cardType
+                _cardType.value = cardType.value.copy(
+                    text = event.cardType
+                )
             }
 
             AddEditCardEvent.SaveCard -> {
-
+                saveCard()
             }
         }
     }
 
     private fun saveCard() = viewModelScope.launch {
         try {
-//            cardUseCases.addCard(card = Card(
-//                // Payoff
-//            ))
-        }catch (e:Exception){
+            _eventFlow.emit(
+                UiEvent.ShowSnackBar(
+                    message = "${cardNumber.value}"
+                )
+            )
+            cardUseCases.addCard(card = Card(
+                cardNo = cardNumber.value.text,
+                expiryDate = cardExpiryDate.value.text,
+                cvv = cardCvv.value.text,
+                nameOnCard = nameOnCard.value.text,
+                cardType = cardType.value.text,
+                cardBank = cardBank.value.text,
+                cardPaymentNetworkType = cardPaymentNetwork.value.text
+            ))
+        } catch (e: Exception) {
             _eventFlow.emit(
                 UiEvent.ShowSnackBar(
                     message = e.message ?: "Couldn't save card"

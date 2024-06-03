@@ -5,7 +5,7 @@ import com.karna.mycards.domain.model.Card
 import kotlinx.coroutines.flow.Flow
 
 class CardRepositoryImpl(private val dao: CardDao) : CardRepository {
-    override suspend fun getCards(): Flow<List<Card>> {
+    override fun getCards(): Flow<List<Card>> {
         return dao.getCards()
     }
 

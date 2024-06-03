@@ -3,5 +3,8 @@
     <string name="my_cards">My Cards</string>
     <string name="no_cards">No Cards Available.</string>
     <string name="add_card">Add Card</string>
-    <string name="card_no">Card Number</string>
+    <string name="card_no">Card Number :</string>
+    <string name="name_on_card">Name on Card :</string>
+    <string name="expire_date">Expire Date :</string>
+    <string name="cvv">CVV :</string>
 </resources>

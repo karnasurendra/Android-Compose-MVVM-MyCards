@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class CardsViewModel @Inject
-constructor(private val cardUseCases: CardUseCases) : ViewModel() {
+class CardsViewModel @Inject constructor(private val cardUseCases: CardUseCases) : ViewModel() {
 
     private val _state = mutableStateOf(CardsState())
     val state: State<CardsState> = _state
