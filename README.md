@@ -52,9 +52,19 @@
 ## Screenshots
 
 ![My Image](https://github.com/karnasurendra/Android-Compose-MVVM-MyCards/blob/developement/WhatsApp%20Image%202024-06-07%20at%2018.31.32.jpeg)
+![My Image](https://github.com/karnasurendra/Android-Compose-MVVM-MyCards/blob/developement/WhatsApp%20Image%202024-06-07%20at%2018.31.33.jpeg)
+![My Image](https://github.com/karnasurendra/Android-Compose-MVVM-MyCards/blob/developement/WhatsApp%20Image%202024-06-07%20at%2018.31.34%20(1).jpeg)
+![My Image](https://github.com/karnasurendra/Android-Compose-MVVM-MyCards/blob/developement/WhatsApp%20Image%202024-06-07%20at%2018.31.33%20(1).jpeg)
+![My Image](https://github.com/karnasurendra/Android-Compose-MVVM-MyCards/blob/developement/WhatsApp%20Image%202024-06-07%20at%2018.31.34%20(2).jpeg)
+![My Image](https://github.com/karnasurendra/Android-Compose-MVVM-MyCards/blob/developement/WhatsApp%20Image%202024-06-07%20at%2018.31.34.jpeg)
 
 
 ## Video
+
+<video width="640" height="360" controls>
+    <source src="https://github.com/karnasurendra/Android-Compose-MVVM-MyCards/blob/developement/WhatsApp%20Video%202024-06-07%20at%2018.35.27.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 
 ## License
