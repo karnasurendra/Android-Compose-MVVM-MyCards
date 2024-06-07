@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">MyCards</string>
+    <string name="app_name">My Cards</string>
+    <string name="my_cards">My Cards</string>
+    <string name="no_cards">No Cards Available.</string>
+    <string name="add_card">Add Card</string>
+    <string name="card_no">Card Number :</string>
+    <string name="name_on_card">Name on Card :</string>
+    <string name="expire_date">Expire Date :</string>
+    <string name="cvv">CVV :</string>
+    <string name="tap_to_view">Tap to view</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="delete_card">Delete Card</string>
+    <string name="sure_delete">Are you sure? you want to delete the card?</string>
+    <string name="set_pin">Set PIN</string>
+    <string name="login_with_pin">Login with PIN</string>
 </resources>

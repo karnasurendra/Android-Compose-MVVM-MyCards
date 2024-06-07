@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    kotlin("kapt")
     alias(libs.plugins.hilt)
-    alias(libs.plugins.roomKsp)
+    alias(libs.plugins.kotlin.serialization)
+    kotlin("kapt")
 }
 
 android {
@@ -50,6 +50,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    hilt {
+        enableAggregatingTask = false
+    }
 }
 
 dependencies {
@@ -70,11 +73,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Compose dependencies
-    implementation(libs.viewModelCompose)
-    implementation(libs.androidx.navigation)
-    implementation(libs.composeMaterial)
-
     // Coroutines
     implementation(libs.coroutinesCore)
     implementation(libs.coroutinesAndroid)
@@ -85,8 +83,17 @@ dependencies {
     implementation(libs.hiltComposeNavigation)
 
     /*Room*/
-    implementation(libs.androidx.room)
-    annotationProcessor(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    androidTestImplementation("androidx.room:room-testing:$roomVersion")
+
+    // BioMetric
+    implementation("androidx.biometric:biometric:1.1.0")
+
+    //Proto Data store
+    implementation("androidx.datastore:datastore:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
 }

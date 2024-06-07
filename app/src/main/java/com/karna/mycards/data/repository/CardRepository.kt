@@ -1,11 +1,11 @@
 package com.karna.mycards.data.repository
 
-import com.karna.mycards.data.model.Card
+import com.karna.mycards.domain.model.Card
 import kotlinx.coroutines.flow.Flow
 
 interface CardRepository {
 
-    suspend fun getCards(): Flow<List<Card>>
+    fun getCards(): Flow<List<Card>>
 
     suspend fun getCardById(id: Int): Card?
 
