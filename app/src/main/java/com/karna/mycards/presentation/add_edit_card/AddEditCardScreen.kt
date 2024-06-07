@@ -195,7 +195,7 @@ fun AddEditCardScreen(
                             viewModel.onEvent(AddEditCardEvent.EnteredCardCvv(it))
                         },
                         singleLine = true,
-                        maxLength = 3,
+                        maxLength = 4,
                         textStyle = MaterialTheme.typography.labelMedium,
                         keyboardOptions = KeyboardOptions.Default.copy(
                             keyboardType = KeyboardType.Number,

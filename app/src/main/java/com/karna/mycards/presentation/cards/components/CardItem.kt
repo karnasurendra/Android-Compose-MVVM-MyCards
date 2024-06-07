@@ -37,8 +37,8 @@ fun CardItem(
                 shape = RoundedCornerShape(15.dp),
                 brush = Brush.linearGradient(
                     colors = listOf(
-                        MaterialTheme.colorScheme.primaryContainer,
-                        MaterialTheme.colorScheme.secondaryContainer
+                        MaterialTheme.colorScheme.primary,
+                        MaterialTheme.colorScheme.tertiary
                     )
                 )
             )
