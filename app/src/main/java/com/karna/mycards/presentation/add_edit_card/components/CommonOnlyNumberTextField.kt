@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 
 @Composable
-fun CommonTextField(
+fun CommonOnlyNumberTextField(
     text: String,
     hint: String,
     modifier: Modifier = Modifier,
@@ -31,8 +31,9 @@ fun CommonTextField(
         OutlinedTextField(
             value = text,
             onValueChange = {
-                if (it.length <= (maxLength ?: Int.MAX_VALUE)) {
-                    onValueChange(it)
+                val filteredText = it.filter { char -> char.isDigit() }
+                if (filteredText.length <= (maxLength ?: Int.MAX_VALUE)) {
+                    onValueChange(filteredText)
                 }
             },
             singleLine = singleLine,

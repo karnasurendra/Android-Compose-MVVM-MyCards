@@ -22,8 +22,7 @@ fun TextFieldForExpiryDate(
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
     textStyle: TextStyle = TextStyle(),
-    singleLine: Boolean = false,
-    onFocusChange: (FocusState) -> Unit
+    singleLine: Boolean = false
 ) {
 
     val context = LocalContext.current
@@ -61,7 +60,6 @@ fun TextFieldForExpiryDate(
             modifier = Modifier
                 .fillMaxWidth()
                 .onFocusChanged {
-                    onFocusChange(it)
                     if (it.isFocused) {
                         datePickerDialog.show()
                     }

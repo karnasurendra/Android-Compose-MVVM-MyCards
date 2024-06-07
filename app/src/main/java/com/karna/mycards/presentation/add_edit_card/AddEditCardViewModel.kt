@@ -20,8 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditCardViewModel @Inject constructor(
-    private val cardUseCases: CardUseCases,
-    private val savedStateHandle: SavedStateHandle
+    private val cardUseCases: CardUseCases
 ) : ViewModel() {
 
     private val _cardNumber = mutableStateOf(
@@ -62,20 +61,11 @@ class AddEditCardViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-
     var cardBanksList: List<String>
     var cardTypeList: List<String>
     var cardPaymentNetworkList: List<String>
 
     init {
-        savedStateHandle.get<Int>("cardId")?.let { cardId ->
-
-            if (cardId != -1) {
-
-            }
-
-        }
-
         cardBanksList = prepareCardBanksList()
         cardTypeList = prepareCardTypeList()
         cardPaymentNetworkList = prepareCardPaymentNetworkList()
@@ -170,20 +160,20 @@ class AddEditCardViewModel @Inject constructor(
 
     private fun saveCard() = viewModelScope.launch {
         try {
-            _eventFlow.emit(
-                UiEvent.ShowSnackBar(
-                    message = "${cardNumber.value}"
+            cardUseCases.addCard(
+                card = Card(
+                    cardNo = cardNumber.value.text,
+                    expiryDate = cardExpiryDate.value.text,
+                    cvv = cardCvv.value.text,
+                    nameOnCard = nameOnCard.value.text,
+                    cardType = cardType.value.text,
+                    cardBank = cardBank.value.text,
+                    cardPaymentNetworkType = cardPaymentNetwork.value.text
                 )
             )
-            cardUseCases.addCard(card = Card(
-                cardNo = cardNumber.value.text,
-                expiryDate = cardExpiryDate.value.text,
-                cvv = cardCvv.value.text,
-                nameOnCard = nameOnCard.value.text,
-                cardType = cardType.value.text,
-                cardBank = cardBank.value.text,
-                cardPaymentNetworkType = cardPaymentNetwork.value.text
-            ))
+            _eventFlow.emit(
+                UiEvent.SaveCard()
+            )
         } catch (e: Exception) {
             _eventFlow.emit(
                 UiEvent.ShowSnackBar(
@@ -195,8 +185,7 @@ class AddEditCardViewModel @Inject constructor(
 
     sealed class UiEvent {
         data class ShowSnackBar(val message: String) : UiEvent()
-
-        object SaveNote : UiEvent()
+        class SaveCard : UiEvent()
 
     }
 

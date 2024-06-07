@@ -1,6 +1,7 @@
 package com.karna.mycards.presentation.add_edit_card
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,6 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -44,12 +46,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.karna.mycards.R
+import com.karna.mycards.presentation.add_edit_card.components.CardNumberTextField
 import com.karna.mycards.presentation.add_edit_card.components.CommonTextField
 import com.karna.mycards.presentation.add_edit_card.components.Spinner
 import com.karna.mycards.presentation.add_edit_card.components.TextFieldForExpiryDate
 import kotlinx.coroutines.flow.collectLatest
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddEditCardScreen(
     navController: NavController,
@@ -68,16 +70,15 @@ fun AddEditCardScreen(
         SnackbarHostState()
     }
 
-
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
-                AddEditCardViewModel.UiEvent.SaveNote -> {
-                    navController.navigateUp()
-                }
-
                 is AddEditCardViewModel.UiEvent.ShowSnackBar -> {
                     snackBarHostState.showSnackbar(event.message)
+                }
+
+                is AddEditCardViewModel.UiEvent.SaveCard -> {
+                    navController.navigateUp()
                 }
             }
         }
@@ -94,9 +95,18 @@ fun AddEditCardScreen(
         snackbarHost = {
             SnackbarHost(hostState = snackBarHostState)
         }) { paddingValues ->
+
         Column(
             Modifier
                 .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            MaterialTheme.colorScheme.primaryContainer,
+                            MaterialTheme.colorScheme.secondaryContainer
+                        )
+                    )
+                )
                 .verticalScroll(rememberScrollState())
                 .padding(paddingValues)
         ) {
@@ -136,7 +146,7 @@ fun AddEditCardScreen(
 
                 Spacer(modifier = Modifier.height(15.dp))
 
-                CommonTextField(
+                CardNumberTextField(
                     text = cardNumberState.text,
                     hint = cardNumberState.hint,
                     onValueChange = {
@@ -171,9 +181,6 @@ fun AddEditCardScreen(
                         onValueChange = {
                             viewModel.onEvent(AddEditCardEvent.EnteredCardExpiryDate(it))
                         },
-                        onFocusChange = {
-                            viewModel.onEvent(AddEditCardEvent.ChangeExpiryDateFocus(it))
-                        },
                         singleLine = true,
                         textStyle = MaterialTheme.typography.labelMedium
                     )
@@ -187,10 +194,6 @@ fun AddEditCardScreen(
                         onValueChange = {
                             viewModel.onEvent(AddEditCardEvent.EnteredCardCvv(it))
                         },
-                        onFocusChange = {
-                            viewModel.onEvent(AddEditCardEvent.ChangeCardCvvFocus(it))
-                        },
-                        isHintVisible = cardCvvState.isHintVisible,
                         singleLine = true,
                         maxLength = 3,
                         textStyle = MaterialTheme.typography.labelMedium,
@@ -215,10 +218,6 @@ fun AddEditCardScreen(
                     onValueChange = {
                         viewModel.onEvent(AddEditCardEvent.EnteredNameOnCard(it))
                     },
-                    onFocusChange = {
-                        viewModel.onEvent(AddEditCardEvent.ChangeCardNameFocus(it))
-                    },
-                    isHintVisible = nameOnCardState.isHintVisible,
                     singleLine = true,
                     maxLength = Int.MAX_VALUE,
                     textStyle = MaterialTheme.typography.labelMedium,
